@@ -25,6 +25,7 @@ const getStory = async (req, res) => {
   try {
     const get = await StoryModel.findOne({
       _id: req.params.id,
+      createdBy: req.user._id,
       isDeleted: false,
     });
     if (get) {
@@ -54,7 +55,6 @@ const storyList = async (req, res) => {
   try {
     const { filter, page, limit } = req.query;
     const query = {
-      createdBy: req.user._id,
       isDeleted: false,
     };
     if (filter) {
@@ -99,6 +99,7 @@ const updateStory = async (req, res) => {
   try {
     const get = await StoryModel.findOne({
       _id: req.params.id,
+      createdBy: req.user._id,
       isDeleted: false,
     });
     if (get) {
@@ -133,6 +134,7 @@ const deleteStory = async (req, res) => {
   try {
     const get = await StoryModel.findOne({
       _id: req.params.id,
+      createdBy: req.user._id,
       isDeleted: false,
     });
     if (get) {
